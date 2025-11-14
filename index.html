@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Text Compression - NO $ MARKER + CHARTS</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📱 SMS Text Compression System</h1>
+        </header>
+
+        <div class="main-content">
+            <section class="card">
+                <h2>Input Text</h2>
+                <textarea id="inputText" placeholder="Enter SMS text..." rows="4"></textarea>
+                <div class="button-group">
+                    <button id="compressBtn" class="btn btn-primary">🗜️ Compress</button>
+                    <button id="decompressBtn" class="btn btn-secondary" disabled>🔄 Decompress</button>
+                    <button id="sampleBtn" class="btn btn-secondary">📝 Sample</button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Stage 1️⃣: Lossy Compression</h2>
+                <div class="result-item">
+                    <label>Original:</label>
+                    <div class="output-text" id="stage1Input">-</div>
+                </div>
+                <div class="result-item">
+                    <label>After SMS Rules:</label>
+                    <div class="output-text highlighted" id="stage1Output">-</div>
+                </div>
+                <div class="stats">
+                    <span>Original: <b id="s1o">0</b> chars</span>
+                    <span>Lossy: <b id="s1l">0</b> chars</span>
+                    <span>Reduction: <b id="s1r">0%</b></span>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Stage 2️⃣: BWT </h2>
+                <div class="result-item">
+                    <label>BWT Output:</label>
+                    <div class="output-text mono" id="stage2Output">-</div>
+                </div>
+                <div class="result-item">
+                    <label>BWT Index (for decompression):</label>
+                    <span id="stage2Index">-</span>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Stage 3️⃣: Modified RLE</h2>
+                <div class="result-item">
+                    <label>RLE Compressed:</label>
+                    <div class="output-text mono highlighted" id="stage3Output">-</div>
+                </div>
+                <div class="stats">
+                    <span>BWT Length: <b id="s3i">0</b></span>
+                    <span>RLE Length: <b id="s3o">0</b></span>
+                    <span>Reduction: <b id="s3r">0%</b></span>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>📊 Final Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="label">Original</span>
+                        <span class="value" id="finalOrig">0 chars</span>
+                    </div>
+                    <div class="stat-box success">
+                        <span class="label">Compressed</span>
+                        <span class="value" id="finalComp">0 chars</span>
+                    </div>
+                    <div class="stat-box success">
+                        <span class="label">Ratio</span>
+                        <span class="value" id="finalRatio">0:1</span>
+                    </div>
+                    <div class="stat-box success">
+                        <span class="label">Saved</span>
+                        <span class="value" id="finalSave">0%</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>📈 Compression Analysis Charts</h2>
+                <div class="charts-container">
+                    <div class="chart-wrapper">
+                        <canvas id="compressionChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="ratioChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>✅ Decompression Verification</h2>
+                <div class="result-item">
+                    <label>Decompressed:</label>
+                    <div class="output-text" id="decompressedText">-</div>
+                </div>
+                <div class="result-item">
+                    <label>Status:</label>
+                    <span id="decompressStatus" style="font-weight: bold;">Not decompressed yet</span>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>✓ BWT without $ ✓ Decompression working ✓ With Analysis Charts</p>
+        </footer>
+    </div>
+
+    <script src="compressor.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
